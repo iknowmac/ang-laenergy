@@ -1,0 +1,14 @@
+body {
+    padding-top: 50px;
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.flot-chart {
+    display: block;
+    height: 400px;
+    width: 100%;
+}
