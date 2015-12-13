@@ -1,9 +1,14 @@
 body {
-    padding-top: 50px;
+    padding-top: 70px;
 }
 
 .morris-chart {
     display: block;
-    height: 400px;
+    height: 100%;
     width: 100%;
 }
+
+/*
+#chart { height:400px; width:100%; }
+#chart > svg {width: 100% !important;height: 400px !important;}
+*/
