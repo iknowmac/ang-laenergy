@@ -8,14 +8,13 @@
         <meta name="author" content="">
 
         <title>Los Angeles Energy View</title>
-
-        <!-- Bootstrap core CSS -->
+        
+        <!-- Styles fro Bootstrap, FontAwesome and Morris Charts -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" >
-        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
         
-        <!-- Custom styles for this template -->
+        <!-- Local styles -->
         <link href="app.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -36,12 +35,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Project Name</a>
+                <a class="navbar-brand" href="#">Energy View</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Energy</a></li>
+                    <li class="active"><a href="#">Energy</a></li>
                     <li><a href="#">Water</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
@@ -52,7 +50,7 @@
         
         <div class="jumbotron">
             <h1>Los Angeles Energy View</h1>
-            <p>Use this document as a way to quickly start any new project. All you get is this text and a mostly barebones HTML document.</p>
+            <p>Simple application using a public APIs for Los Angelas county energy and water usage.</p>
         </div>
       
         <div id="energy" ng-controller="EnergyCtrl">
@@ -119,43 +117,31 @@
     </div>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Bootstrap core JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     
+    <!-- AngularJS core, resource and route JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
     
+    <!-- Morris Charts includes -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     <script src="js/angular-morris-chart/angular-morris-chart.min.js"></script>
     
+    <!-- App Javascript -->
     <script src="app.js"></script>
     
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- Energy chart, still needs work -->
     <script type="text/javascript">
-        (function () {
-            'use strict';
-            if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-                var msViewportStyle = document.createElement('style')
-                msViewportStyle.appendChild(
-                    document.createTextNode(
-                        '@-ms-viewport{width:auto!important}'
-                    )
-                )
-                document.querySelector('head').appendChild(msViewportStyle)
-            }
-        })();
         $('#chart').on('shown.bs.collapse', function () {
             $("i.glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
         });
         $('#chart').on('hidden.bs.collapse', function () {
             $("i.glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
         });
-        
     </script>
     
     </body>
