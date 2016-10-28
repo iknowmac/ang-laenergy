@@ -8,12 +8,12 @@
         <meta name="author" content="">
 
         <title>Los Angeles Energy View</title>
-        
+
         <!-- Styles fro Bootstrap, FontAwesome and Morris Charts -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" >
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-        
+
         <!-- Local styles -->
         <link href="app.css" rel="stylesheet">
 
@@ -47,14 +47,14 @@
     </div>
 
     <div class="container">
-        
+
         <div class="jumbotron">
             <h1>Los Angeles Energy View</h1>
             <p>Simple application using a public APIs for Los Angelas county energy and water usage.</p>
         </div>
-      
+
         <div id="energy" ng-controller="EnergyCtrl">
-            
+
             <div class="panel panel-primary clearfix">
                 <div class="panel-heading clearfix">
                     <h3 class="panel-title pull-left">High, average, low residential energy usage By fiscal year</h3>
@@ -65,21 +65,23 @@
                 <div class="panel-body">
                     Residential energy use (low, averaged, high) for each fiscal year since 2005 in kilowatt hours (kWh).
                 </div>
-                <div id="chart" class="collapse" 
-                    area-chart 
-                    area-data='chartData' 
-                    area-xkey='label'
-                    area-ykeys='["low", "average", "high"]' 
-                    area-labels='["Low", "Average", "High"]' 
-                    line-colors='["#8BA870", "#337ab7", "#a94442"]' 
-                    area-resize='true' 
-                    area-parse-time='false'
-                    area-hide-hover='true'>
+                <div id="chart-outter">
+                  <div id="chart" class="collapse"
+                      area-chart
+                      area-data='chartData'
+                      area-xkey='label'
+                      area-ykeys='["low", "average", "high"]'
+                      area-labels='["Low", "Average", "High"]'
+                      line-colors='["#8BA870", "#337ab7", "#a94442"]'
+                      area-resize='true'
+                      area-parse-time='false'
+                      area-hide-hover='true'>
+                  </div>
                 </div>
             </div>
-            
+
             <div class="panel panel-primary">
-                
+
                 <div class="panel-heading clearfix">
                     <h3 class="panel-title pull-left" style="padding-top:6px;">{{ metaData.view.name }}</h3>
                     <div class="col-sm-3 pull-right">
@@ -87,7 +89,7 @@
                             <div class="input-group">
                                 <div class="input-group-addon"><i class="fa fa-search"></i></div>
                                 <input type="text" class="form-control input-sm" placeholder="Search zip codes..." ng-model="search">
-                            </div>      
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -102,47 +104,47 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody> 
+                    <tbody>
                         <tr ng-repeat="row in tableData | filter:search">
                             <td>{{ row.zip }}</td>
                             <td ng-repeat="item in row.data track by $index">{{ item }}</td>
                         </tr>
                     </tbody>
                 </table>
-                
+
             </div>
-        
+
         </div>
-        
+
     </div>
 
 
     <!-- Bootstrap core JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    
+
     <!-- AngularJS core, resource and route JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
-    
+
     <!-- Morris Charts includes -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     <script src="js/angular-morris-chart/angular-morris-chart.min.js"></script>
-    
+
     <!-- App Javascript -->
     <script src="app.js"></script>
-    
+
     <!-- Energy chart, still needs work -->
     <script type="text/javascript">
-        $('#chart').on('shown.bs.collapse', function () {
-            $("i.glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+        $('#chart-outter').on('shown.bs.collapse', function () {
+          $("i.glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
         });
-        $('#chart').on('hidden.bs.collapse', function () {
-            $("i.glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+        $('#chart-outter').on('hidden.bs.collapse', function () {
+          $("i.glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
         });
     </script>
-    
+
     </body>
 </html>

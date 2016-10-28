@@ -1,9 +1,9 @@
 body {
-    padding-top: 70px;
+  padding-top: 70px;
 }
 
 .morris-chart {
-    display: block;
-    height: 100%;
-    width: 100%;
+  display: block;
+  height: 100%;
+  width: 100%;
 }
