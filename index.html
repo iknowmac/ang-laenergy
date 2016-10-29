@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="city-data">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +24,7 @@
         <![endif]-->
     </head>
 
-    <body>
+    <body ng-app="city-data">
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -39,83 +39,15 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Energy</a></li>
-                    <li><a href="#">Water</a></li>
+                    <li><a ui-sref="energy" ui-sref-active="active">Energy</a></li>
+                    <li><a ui-sref="water" ui-sref-active="active">Water</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
     </div>
 
     <div class="container">
-
-        <div class="jumbotron">
-            <h1>Los Angeles Energy View</h1>
-            <p>Simple application using a public APIs for Los Angelas county energy and water usage.</p>
-        </div>
-
-        <div id="energy" ng-controller="EnergyCtrl">
-
-            <div class="panel panel-primary clearfix">
-                <div class="panel-heading clearfix">
-                    <h3 class="panel-title pull-left">High, average, low residential energy usage By fiscal year</h3>
-                    <div class="col-sm-3 pull-right">
-                        <a href="#" class="btn btn-xs btn-default pull-right" data-toggle="collapse" data-target="#chart"><i class="glyphicon glyphicon-minus"></i></a>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    Residential energy use (low, averaged, high) for each fiscal year since 2005 in kilowatt hours (kWh).
-                </div>
-                <div id="chart-outter">
-                  <div id="chart" class="collapse"
-                      area-chart
-                      area-data='chartData'
-                      area-xkey='label'
-                      area-ykeys='["low", "average", "high"]'
-                      area-labels='["Low", "Average", "High"]'
-                      line-colors='["#8BA870", "#337ab7", "#a94442"]'
-                      area-resize='true'
-                      area-parse-time='false'
-                      area-hide-hover='true'>
-                  </div>
-                </div>
-            </div>
-
-            <div class="panel panel-primary">
-
-                <div class="panel-heading clearfix">
-                    <h3 class="panel-title pull-left" style="padding-top:6px;">{{ metaData.view.name }}</h3>
-                    <div class="col-sm-3 pull-right">
-                        <form>
-                            <div class="input-group">
-                                <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                                <input type="text" class="form-control input-sm" placeholder="Search zip codes..." ng-model="search">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    Residential energy use (averaged monthly) for each fiscal year since 2005 in kilowatt hours (kWh).
-                </div>
-                <table class="table table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th ng-repeat="column in tableColumns">
-                                {{ column.name }}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="row in tableData | filter:search">
-                            <td>{{ row.zip }}</td>
-                            <td ng-repeat="item in row.data track by $index">{{ item }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
-
+      <ui-view></ui-view>
     </div>
 
 
@@ -124,9 +56,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <!-- AngularJS core, resource and route JavaScript -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+    <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
 
     <!-- Morris Charts includes -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.2/raphael-min.js"></script>

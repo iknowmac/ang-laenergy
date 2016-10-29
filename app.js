@@ -3,23 +3,41 @@
     const energy_url = 'https://data.lacity.org/api/views/rijp-9dwj/rows.json';
     const water_url = 'https://data.lacity.org/api/views/hu2j-wciz/rows.json';
 
-    let app = angular.module(
-      'city-data',
-      ['ngResource','ngRoute','angular.morris-chart']
+    let app = angular.module('city-data',
+      ['ngResource','ngRoute','ui.router','angular.morris-chart']
     );
 
-    app.factory('Energy', ($resource) => {
+    app.config(function($stateProvider, $urlRouterProvider) {
+
+      $urlRouterProvider.otherwise('/home');
+
+      $stateProvider
+        .state('home', {
+            url: '/home',
+            templateUrl: 'partials/home.html',
+        })
+        .state('energy', {
+          url: '/energy',
+          templateUrl: 'partials/energy.html',
+          controller: 'EnergyCtrl',
+        })
+        .state('water', {
+          url: '/water',
+          templateUrl: 'partials/water.html',
+          controller: 'WaterCtrl',
+        });
+
+    });
+
+    app.factory('Energy', function($resource) {
         return $resource(energy_url);
     });
 
-    app.factory('Water', ($resource) => {
+    app.factory('Water', function($resource) {
         return $resource(water_url);
     });
 
-    app.controller('EnergyCtrl', ['$scope','$timeout','Energy',($scope, $timeout, Energy) => {
-      $scope.sortType = 'zip';
-      $scope.sortReverse = false;
-      $scope.searchOrders = '';
+    app.controller('EnergyCtrl', ['$scope','Energy',function($scope, Energy) {
 
       Energy.get(function(data) {
         $scope.metaData = data.meta;
@@ -30,14 +48,11 @@
 
     }]);
 
-    app.controller('WaterCtrl', ['$scope','Water',($scope, Water) => {
-      $scope.sortType = 'zip';
-      $scope.sortReverse = false;
-      $scope.searchOrders = '';
+    app.controller('WaterCtrl', ['$scope','Water',function($scope, Water) {
 
       Water.get(function(data) {
-        $scope.data = data.data;
         $scope.meta = data.meta;
+        $scope.data = data.data;
       });
 
     }]);

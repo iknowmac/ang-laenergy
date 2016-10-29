@@ -1,0 +1,59 @@
+
+<div id="energy">
+
+  <div class="panel panel-primary clearfix">
+    <div class="panel-heading">
+        <h3 class="panel-title">High, average, low residential energy usage By fiscal year</h3>
+    </div>
+    <div class="panel-body">
+        Residential energy use (low, averaged, high) for each fiscal year since 2005 in kilowatt hours (kWh).
+    </div>
+    <div
+        id="chart"
+        area-chart
+        area-data='chartData'
+        area-xkey='label'
+        area-ykeys='["low", "average", "high"]'
+        area-labels='["Low", "Average", "High"]'
+        line-colors='["#8BA870", "#337ab7", "#a94442"]'
+        area-resize='true'
+        area-parse-time='false'
+        area-hide-hover='true'>
+    </div>
+  </div>
+
+  <div class="panel panel-primary">
+
+    <div class="panel-heading clearfix">
+        <h3 class="panel-title pull-left" style="padding-top:6px;">{{ metaData.view.name }}</h3>
+        <div class="col-sm-3 pull-right">
+            <form>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                    <input type="text" class="form-control input-sm" placeholder="Search zip codes..." ng-model="search">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel-body">
+        Residential energy use (averaged monthly) for each fiscal year since 2005 in kilowatt hours (kWh).
+    </div>
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th ng-repeat="column in tableColumns">
+                    {{ column.name }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in tableData | filter:search">
+                <td>{{ row.zip }}</td>
+                <td ng-repeat="item in row.data track by $index">{{ item }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+  </div>
+
+</div>
